@@ -2,7 +2,6 @@
 # Licensed under the MIT License.
 module "acr" {
   source  = "github.com/POps-Rox/tf-az-overlays-containerregistry"
-  version = "~> 2.0"
 
   #depends_on = [ data.azurerm_virtual_network.aks_vnet ]
   # By default, this module will not create a resource group. If you wish 
