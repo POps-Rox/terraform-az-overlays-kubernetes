@@ -24,7 +24,7 @@ provider "azuread" {
 
 
 module "mod_azure_region_lookup" {
-  source  = "azurenoops/overlays-azregions-lookup/azurerm"
+  source  = "github.com/POps-Rox/tf-az-overlays-azregionslookup"
   version = "~> 1.0.1"
 
   azure_region = "usgovvirginia"

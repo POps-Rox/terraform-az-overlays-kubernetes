@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 module "acr" {
-  source  = "azurenoops/overlays-container-registry/azurerm"
+  source  = "github.com/POps-Rox/tf-az-overlays-containerregistry"
   version = "~> 2.0"
 
   #depends_on = [ data.azurerm_virtual_network.aks_vnet ]

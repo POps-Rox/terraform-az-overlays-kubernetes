@@ -5,7 +5,7 @@ module "mod_key_vault" {
   depends_on = [
     azurerm_user_assigned_identity.aks
   ]
-  source                       = "azurenoops/overlays-key-vault/azurerm"
+  source                       = "github.com/POps-Rox/tf-az-overlays-keyvault"
   version                      = "~> 2.0"
   count                        = var.create_aks_keyvault ? 1 : 0
   existing_resource_group_name = local.resource_group_name
