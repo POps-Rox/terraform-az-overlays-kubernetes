@@ -1,4 +1,4 @@
- 
+
 ## AKS Admin/Infra Team Group
 ## List cluster admin credential action.
 resource "azuread_group" "aksadminteam" {
@@ -7,10 +7,10 @@ resource "azuread_group" "aksadminteam" {
   security_enabled = true
 }
 
- 
+
 output "admin_object_id" {
   value = azuread_group.aksadminteam.object_id
-}   
+}
 
 
 ## AKS Dev Team Group  
@@ -20,10 +20,10 @@ resource "azuread_group" "aksdevteam" {
   security_enabled = true
 }
 
- 
+
 output "appdev_object_id" {
   value = azuread_group.aksdevteam.object_id
-}   
+}
 
 ## AKS Contributor/Operations Team Group
 ## Grants access to read and write Azure Kubernetes Service clusters

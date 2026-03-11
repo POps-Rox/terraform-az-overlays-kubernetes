@@ -6,7 +6,7 @@
 # Azure Kubernetes Service (AKS) Cluster
 #----------------------------------------------------------------
 resource "azurerm_kubernetes_cluster" "aks_cluster" {
-  depends_on = [ data.azurerm_subnet.aks_subnet, azurerm_role_assignment.route_table_network_contributor ]
+  depends_on          = [data.azurerm_subnet.aks_subnet, azurerm_role_assignment.route_table_network_contributor]
   name                = local.cluster_name
   location            = local.location
   resource_group_name = local.resource_group_name
@@ -16,21 +16,21 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
   key_vault_secrets_provider {
     secret_rotation_enabled = true
   }
- 
-  private_cluster_enabled       = true  // private cluster is always enabled based on the current implementation (SCCA)
-  sku_tier                      = var.sku_tier
-  private_dns_zone_id           = local.private_dns_zone_id
-  dns_prefix                    = local.dns_prefix
+
+  private_cluster_enabled = true // private cluster is always enabled based on the current implementation (SCCA)
+  sku_tier                = var.sku_tier
+  private_dns_zone_id     = local.private_dns_zone_id
+  dns_prefix              = local.dns_prefix
 
   network_profile {
-    network_plugin     = var.network_plugin
-    network_policy     = var.network_policy
-    dns_service_ip     = (var.network_profile_options == null ? null : var.network_profile_options.dns_service_ip)
-    service_cidr       = (var.network_profile_options == null ? null : var.network_profile_options.service_cidr)
-    outbound_type      = var.outbound_type
-    pod_cidr           = (var.network_plugin == "kubenet" ? var.pod_cidr : null)
+    network_plugin = var.network_plugin
+    network_policy = var.network_policy
+    dns_service_ip = (var.network_profile_options == null ? null : var.network_profile_options.dns_service_ip)
+    service_cidr   = (var.network_profile_options == null ? null : var.network_profile_options.service_cidr)
+    outbound_type  = var.outbound_type
+    pod_cidr       = (var.network_plugin == "kubenet" ? var.pod_cidr : null)
   }
-  
+
   default_node_pool {
     name                         = var.default_node_pool_name
     vm_size                      = local.node_pools[var.default_node_pool_name].vm_size
@@ -57,14 +57,14 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
 
   identity {
     type = var.identity_type
-    
-     identity_ids = (var.identity_type == "SystemAssigned" ? null :
+
+    identity_ids = (var.identity_type == "SystemAssigned" ? null :
       (var.user_assigned_identity != null ?
         [var.user_assigned_identity.id] :
-    [azurerm_user_assigned_identity.aks.0.id]))  
+    [azurerm_user_assigned_identity.aks.0.id]))
   }
 
- oms_agent {
+  oms_agent {
     log_analytics_workspace_id = var.log_analytics_workspace_id
   }
 
@@ -86,7 +86,7 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
     }
   }
 
-tags = merge(local.default_tags, var.add_tags)
+  tags = merge(local.default_tags, var.add_tags)
 
   lifecycle {
     ignore_changes = [
@@ -95,12 +95,12 @@ tags = merge(local.default_tags, var.add_tags)
     ]
   }
 
-# Enable AD & Azure RBAC 
-azure_active_directory_role_based_access_control {     
-    managed                = true
-    tenant_id              = data.azurerm_subscription.current.tenant_id    
-    azure_rbac_enabled     = true
-}
-  
+  # Enable AD & Azure RBAC 
+  azure_active_directory_role_based_access_control {
+    managed            = true
+    tenant_id          = data.azurerm_subscription.current.tenant_id
+    azure_rbac_enabled = true
+  }
+
 
 }

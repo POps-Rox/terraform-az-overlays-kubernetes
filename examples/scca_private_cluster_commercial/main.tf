@@ -16,9 +16,9 @@ provider "azurerm" {
 }
 
 provider "azuread" {
-    environment = "public"
-    tenant_id = data.azurerm_subscription.current.tenant_id
-    client_id = data.azurerm_client_config.current.client_id
+  environment = "public"
+  tenant_id   = data.azurerm_subscription.current.tenant_id
+  client_id   = data.azurerm_client_config.current.client_id
 }
 
 module "mod_azure_region_lookup" {
@@ -45,5 +45,5 @@ module "aks_cluster" {
   log_analytics_workspace_id = azurerm_log_analytics_workspace.aks.id
 
   create_aks_keyvault = true
- 
+
 }

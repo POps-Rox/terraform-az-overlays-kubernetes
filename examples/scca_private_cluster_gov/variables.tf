@@ -49,5 +49,5 @@ variable "network_policy" {
 variable "firewall_private_ip" {
   type    = string
   default = "10.8.4.68"
-  
+
 }

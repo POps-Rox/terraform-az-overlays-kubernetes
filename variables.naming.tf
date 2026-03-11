@@ -48,8 +48,8 @@ variable "appgw_user_assigned_identity_custom_name" {
 
 
 variable "use_location_short_name" {
-    description = "Use the short location name in the resource group name."
-    type        = bool
-    default     = true
+  description = "Use the short location name in the resource group name."
+  type        = bool
+  default     = true
 }
  

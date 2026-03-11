@@ -125,8 +125,8 @@ variable "default_node_pool_vm_size" {
 
 #var for aks vnet
 variable "vnet_subnet_id" {
-  type = string
-  default = "" 
+  type    = string
+  default = ""
 }
 
 variable "pod_subnet_id" {
@@ -535,6 +535,6 @@ variable "key_vault_secrets_provider" {
 }
 
 
- 
+
 
 

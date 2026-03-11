@@ -90,7 +90,7 @@ output "kubelet_identity" {
 }
 
 
-  
+
 
 
 

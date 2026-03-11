@@ -17,9 +17,9 @@ provider "azurerm" {
 }
 
 provider "azuread" {
-    environment = "USGovernment"
-    tenant_id = data.azurerm_subscription.current.tenant_id
-    client_id = data.azurerm_client_config.current.client_id
+  environment = "USGovernment"
+  tenant_id   = data.azurerm_subscription.current.tenant_id
+  client_id   = data.azurerm_client_config.current.client_id
 }
 
 
@@ -44,7 +44,7 @@ module "aks_cluster" {
 
   azure_policy_enabled       = true
   log_analytics_workspace_id = azurerm_log_analytics_workspace.aks.id
-  
-  create_aks_keyvault   = true
+
+  create_aks_keyvault = true
 }
 
