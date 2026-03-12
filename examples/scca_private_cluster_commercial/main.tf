@@ -28,7 +28,11 @@ module "mod_azure_region_lookup" {
 }
 
 module "aks_cluster" {
-  source                       = "../.."
+  source = "../.."
+
+  providers = {
+    azurerm = azurerm
+  }
   depends_on                   = [azurerm_resource_group.aks_rg]
   create_aks_resource_group    = false
   location                     = var.location
