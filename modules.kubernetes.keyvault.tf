@@ -5,8 +5,12 @@ module "mod_key_vault" {
   depends_on = [
     azurerm_user_assigned_identity.aks
   ]
-  source                       = "github.com/POps-Rox/tf-az-overlays-keyvault"
-  count                        = var.create_aks_keyvault ? 1 : 0
+  source = "github.com/POps-Rox/tf-az-overlays-keyvault"
+  count  = var.create_aks_keyvault ? 1 : 0
+  providers = {
+    azurerm     = azurerm
+    azurerm.hub = azurerm
+  }
   existing_resource_group_name = local.resource_group_name
   location                     = local.location
   environment                  = var.environment
@@ -24,9 +28,9 @@ module "mod_key_vault" {
   # To use existing subnet, specify `existing_private_subnet_name` with valid subnet name. 
   # To use existing private DNS zone specify `existing_private_dns_zone` with valid zone name.
 
-  enable_private_endpoint      = var.enable_private_endpoint
-  virtual_network_name         = data.azurerm_virtual_network.aks_vnet.name
-  existing_private_subnet_name = data.azurerm_subnet.aks_subnet.name
+  enable_private_endpoint       = var.enable_private_endpoint
+  existing_virtual_network_name = data.azurerm_virtual_network.aks_vnet.name
+  existing_private_subnet_name  = data.azurerm_subnet.aks_subnet.name
 
   # This is to enable resource locks for the key vault. 
   enable_resource_locks = var.enable_resource_locks
