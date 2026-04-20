@@ -8,7 +8,7 @@
 
 # Terraform-Azurerm-Overlays-Kubernetes
 
-[![Changelog](https://img.shields.io/badge/changelog-release-green.svg)](CHANGELOG.md) [![Notice](https://img.shields.io/badge/notice-copyright-yellow.svg)](NOTICE) [![MIT License](https://img.shields.io/badge/license-MIT-orange.svg)](LICENSE) [![TF Registry](https://img.shields.io/badge/terraform-registry-blue.svg)](https://registry.terraform.io/modules/azurenoops/overlays-template/azurerm/)
+[![Changelog](https://img.shields.io/badge/changelog-release-green.svg)](CHANGELOG.md) [![Notice](https://img.shields.io/badge/notice-copyright-yellow.svg)](NOTICE) [![MIT License](https://img.shields.io/badge/license-MIT-orange.svg)](LICENSE) [![TF Registry](https://img.shields.io/badge/terraform-registry-blue.svg)](https://registry.terraform.io/modules/POps-Rox/overlays-template/azurerm/)
 
 ## Overview
 
@@ -19,7 +19,7 @@ Read on to understand what this example does, and when you're ready, collect all
 
 This overlay module will deploy a SCCA compliant, Private AKS Cluster. This is accomplished by isolating the control plane from the user plane. Egress is controlled by creating a UserDefinedRoute that directs all tracffic through an Azure the Azure Firewall in the HUB network. Ingress in controlled by directing all inbound traffic through a Azure Loadbalancer. The Private AKS Cluster is also configured with private endpoints along with SCCA compliant network rules.
 
-Ref: Azure NoOps Hub Module [SCCA compliant Network](https://registry.terraform.io/modules/azurenoops/overlays-hubspoke/azurerm/latest).
+Ref: Azure NoOps Hub Module [SCCA compliant Network](https://registry.terraform.io/modules/POps-Rox/overlays-hubspoke/azurerm/latest).
 For more information, please read the [SCCA documentation](). 
 
 ## Deploy Azure Kubernetes Service - Private Cluster - Kubenet

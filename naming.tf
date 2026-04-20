@@ -4,7 +4,7 @@
 #------------------------------------------------------------
 # Azure NoOps Naming - This should be used on all resource naming
 #------------------------------------------------------------
-data "azurenoopsutils_resource_name" "aks" {
+data "popsrox_utils_resource_name" "aks" {
   name          = var.workload_name
   resource_type = "azurerm_kubernetes_cluster"
   # List of values to concanate Location & region etc.. 
@@ -15,7 +15,7 @@ data "azurenoopsutils_resource_name" "aks" {
   separator   = "-"
 }
 
-data "azurenoopsutils_resource_name" "aks_identity" {
+data "popsrox_utils_resource_name" "aks_identity" {
   name          = var.workload_name
   resource_type = "azurerm_user_assigned_identity"
   prefixes      = [var.org_name, var.use_location_short_name ? module.mod_azregions.location_short : var.location]
@@ -25,7 +25,7 @@ data "azurenoopsutils_resource_name" "aks_identity" {
   separator     = "-"
 }
 
-data "azurenoopsutils_resource_name" "appgw_identity" {
+data "popsrox_utils_resource_name" "appgw_identity" {
   name          = var.workload_name
   resource_type = "azurerm_user_assigned_identity"
   prefixes      = [var.org_name, var.use_location_short_name ? module.mod_azregions.location_short : var.location]
@@ -35,7 +35,7 @@ data "azurenoopsutils_resource_name" "appgw_identity" {
   separator     = "-"
 }
 
-data "azurenoopsutils_resource_name" "appgw" {
+data "popsrox_utils_resource_name" "appgw" {
   name          = var.workload_name
   resource_type = "azurerm_application_gateway"
   prefixes      = [var.org_name, var.use_location_short_name ? module.mod_azregions.location_short : var.location]

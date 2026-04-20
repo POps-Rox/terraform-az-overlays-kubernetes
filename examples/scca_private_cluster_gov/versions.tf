@@ -9,8 +9,8 @@ terraform {
       source  = "hashicorp/azuread"
       version = ">= 2.0.0"
     }
-    azurenoopsutils = {
-      source  = "azurenoops/azurenoopsutils"
+    popsrox-utils = {
+      source  = "POps-Rox/popsrox-utils"
       version = "~> 1.0.4"
     }
   }
