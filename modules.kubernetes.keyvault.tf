@@ -39,7 +39,7 @@ module "mod_key_vault" {
   add_tags = merge(var.add_tags, local.default_tags)
 }
 
-# Create Access Policy for API Service Identity. This is a workaround for the bug in the azurenoops/overlays-key-vault/azurerm module
+# Create Access Policy for API Service Identity. This is a workaround for the bug in the POps-Rox/overlays-key-vault/azurerm module
 resource "azurerm_key_vault_access_policy" "aks_access_policy" {
   depends_on = [
     module.mod_key_vault,
