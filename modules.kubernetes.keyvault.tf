@@ -5,7 +5,7 @@ module "mod_key_vault" {
   depends_on = [
     azurerm_user_assigned_identity.aks
   ]
-  source = "github.com/POps-Rox/tf-az-overlays-keyvault"
+  source = "github.com/POps-Rox/terraform-az-overlays-keyvault"
   count  = var.create_aks_keyvault ? 1 : 0
   providers = {
     azurerm     = azurerm
