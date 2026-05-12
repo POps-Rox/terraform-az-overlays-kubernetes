@@ -12,20 +12,20 @@ resource "azurerm_virtual_network" "aks_vnet" {
 
 #creates the subnet for the private cluster
 resource "azurerm_subnet" "aks_subnet" {
-  name                                      = "snet-aks"
-  resource_group_name                       = azurerm_resource_group.aks_rg.name
-  virtual_network_name                      = azurerm_virtual_network.aks_vnet.name
-  address_prefixes                          = ["10.1.2.0/24"]
-  private_endpoint_network_policies     = "Disabled"
+  name                              = "snet-aks"
+  resource_group_name               = azurerm_resource_group.aks_rg.name
+  virtual_network_name              = azurerm_virtual_network.aks_vnet.name
+  address_prefixes                  = ["10.1.2.0/24"]
+  private_endpoint_network_policies = "Disabled"
 }
 
 #creates the ingress subnet for the private cluster load balancer
 resource "azurerm_subnet" "aks_subnet_ingress" {
-  name                                      = "snet-aks-ingress"
-  resource_group_name                       = azurerm_resource_group.aks_rg.name
-  virtual_network_name                      = azurerm_virtual_network.aks_vnet.name
-  address_prefixes                          = ["10.1.3.0/24"]
-  private_endpoint_network_policies     = "Disabled"
+  name                              = "snet-aks-ingress"
+  resource_group_name               = azurerm_resource_group.aks_rg.name
+  virtual_network_name              = azurerm_virtual_network.aks_vnet.name
+  address_prefixes                  = ["10.1.3.0/24"]
+  private_endpoint_network_policies = "Disabled"
 }
 
 #creates the load balancer for the private cluster ingress
