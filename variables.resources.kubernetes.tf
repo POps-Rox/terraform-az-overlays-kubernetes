@@ -1,14 +1,17 @@
 # variables for AKS
+# tflint-ignore: terraform_unused_declarations
 variable "aks_name" {
   type    = string
   default = "aks"
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "aks_location" {
   type    = string
   default = "eastus"
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "aks_resource_group_name" {
   type    = string
   default = "aks"
@@ -20,6 +23,7 @@ variable "kubernetes_version" {
   default     = null
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "private_dns_zone_type" {
   type        = string
   default     = "System"
@@ -41,21 +45,25 @@ variable "private_dns_zone_id" {
   description = "Id of the private DNS Zone when <private_dns_zone_type> is custom"
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "aks_pod_cidr" {
   type    = string
   default = ""
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "docker_bridge_cidr" {
   type    = string
   default = ""
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "service_cidr" {
   type    = string
   default = ""
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "load_balancer_sku" {
   type    = string
   default = "Basic"
@@ -67,18 +75,22 @@ variable "dns_prefix" {
   default     = "aks.dns.prefix"
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "workload_identity_enabled" {
   type    = bool
   default = true
 }
+# tflint-ignore: terraform_unused_declarations
 variable "oidc_issuer_enabled" {
   type    = bool
   default = true
 }
+# tflint-ignore: terraform_unused_declarations
 variable "open_service_mesh_enabled" {
   type    = bool
   default = false
 }
+# tflint-ignore: terraform_unused_declarations
 variable "image_cleaner_enabled" {
   type    = bool
   default = false
@@ -87,12 +99,14 @@ variable "azure_policy_enabled" {
   type    = bool
   default = false
 }
+# tflint-ignore: terraform_unused_declarations
 variable "http_application_routing_enabled" {
   description = "At this time HTTP Application Routing is not supported in Azure China or Azure US Government."
   type        = bool
   default     = false
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "default_node_pool" {
   type = object({
     name = string
@@ -102,6 +116,7 @@ variable "default_node_pool" {
   }
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "nodes_pools" {
   type    = list(string)
   default = []
@@ -113,37 +128,44 @@ variable "default_node_pool_name" {
   default     = "default"
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "default_node_pool_type" {
   type    = string
   default = "VirtualMachineScaleSets"
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "default_node_pool_vm_size" {
   type    = string
   default = "Standard_D2s_v3"
 }
 
 #var for aks vnet
+# tflint-ignore: terraform_unused_declarations
 variable "vnet_subnet_id" {
   type    = string
   default = ""
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "pod_subnet_id" {
   type    = string
   default = ""
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "nodes_subnet_id" {
   type    = string
   default = null
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "default_node_pool_availability_zones" {
   type    = list(string)
   default = ["1", "2", "3"]
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "default_node_pool_node_labels" {
   type = map(string)
   default = {
@@ -151,51 +173,61 @@ variable "default_node_pool_node_labels" {
   }
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "default_node_pool_node_taints" {
   type    = list(string)
   default = ["nodepool=default:NoSchedule"]
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "default_node_pool_enable_auto_scaling" {
   type    = bool
   default = false
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "default_node_pool_enable_host_encryption" {
   type    = bool
   default = true
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "default_node_pool_eviction_policy" {
   type    = string
   default = "Delete"
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "default_node_pool_enable_node_public_ip" {
   type    = bool
   default = false
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "default_node_pool_max_pods" {
   type    = number
   default = 110
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "default_node_pool_max_count" {
   type    = number
   default = null
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "default_node_pool_min_count" {
   type    = number
   default = null
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "default_node_pool_node_count" {
   type    = number
   default = 3
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "default_node_pool_os_disk_type" {
   type    = string
   default = "Managed"
@@ -203,31 +235,37 @@ variable "default_node_pool_os_disk_type" {
 
 
 
+# tflint-ignore: terraform_unused_declarations
 variable "default_node_pool_os_disk_size_gb" {
   type    = number
   default = 30
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "default_node_pool_os_type" {
   type    = string
   default = "managed"
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "default_node_pool_zones" {
   type    = list(string)
   default = ["1", "2", "3"]
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "default_node_pool_orchestrator_version" {
   type    = string
   default = "1.24.3"
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "default_node_pool_priority" {
   type    = string
   default = "Regular"
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "admin_username" {
   type    = string
   default = "azureuser"
@@ -476,30 +514,35 @@ variable "rbac" {
   }
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "rbac_admin_object_ids" {
   description = "Admin group object ids for use with rbac active directory integration"
   type        = map(string) # keys are only for documentation purposes
   default     = {}
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "enable_kube_dashboard" {
   description = "enable kubernetes dashboard"
   type        = bool
   default     = false
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "enable_azure_policy" {
   description = "to apply at-scale enforcements and safeguards on your clusters in a centralized, consistent manner"
   type        = bool
   default     = false
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "api_server_authorized_ip_ranges" {
   description = "authorized IP ranges to communicate with K8s API"
   type        = map(string)
   default     = null
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "acr_pull_access" {
   description = "List of Azure Container Registries ids where AKS needs pull access."
   type        = list(string)
