@@ -362,11 +362,11 @@ variable "node_pool_defaults" {
   type = object({
     vm_size                      = string
     node_count                   = number
-    auto_scaling_enabled          = bool
+    auto_scaling_enabled         = bool
     min_count                    = number
     max_count                    = number
-    host_encryption_enabled       = bool
-    node_public_ip_enabled        = bool
+    host_encryption_enabled      = bool
+    node_public_ip_enabled       = bool
     max_pods                     = number
     node_labels                  = map(string)
     only_critical_addons_enabled = bool
@@ -390,11 +390,11 @@ variable "node_pool_defaults" {
   default = { name = null
     vm_size                      = "Standard_DS2_v2" # "Standard_B2s"
     node_count                   = 1
-    auto_scaling_enabled          = false
+    auto_scaling_enabled         = false
     min_count                    = null
     max_count                    = null
-    host_encryption_enabled       = false
-    node_public_ip_enabled        = false
+    host_encryption_enabled      = false
+    node_public_ip_enabled       = false
     max_pods                     = null
     node_labels                  = null
     only_critical_addons_enabled = false

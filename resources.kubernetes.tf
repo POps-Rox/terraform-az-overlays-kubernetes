@@ -36,12 +36,12 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
     vm_size                      = local.node_pools[var.default_node_pool_name].vm_size
     os_disk_size_gb              = local.node_pools[var.default_node_pool_name].os_disk_size_gb
     os_disk_type                 = local.node_pools[var.default_node_pool_name].os_disk_type
-    auto_scaling_enabled          = local.node_pools[var.default_node_pool_name].auto_scaling_enabled
+    auto_scaling_enabled         = local.node_pools[var.default_node_pool_name].auto_scaling_enabled
     node_count                   = (local.node_pools[var.default_node_pool_name].auto_scaling_enabled ? null : local.node_pools[var.default_node_pool_name].node_count)
     min_count                    = (local.node_pools[var.default_node_pool_name].auto_scaling_enabled ? local.node_pools[var.default_node_pool_name].min_count : null)
     max_count                    = (local.node_pools[var.default_node_pool_name].auto_scaling_enabled ? local.node_pools[var.default_node_pool_name].max_count : null)
-    host_encryption_enabled       = local.node_pools[var.default_node_pool_name].host_encryption_enabled
-    node_public_ip_enabled        = local.node_pools[var.default_node_pool_name].node_public_ip_enabled
+    host_encryption_enabled      = local.node_pools[var.default_node_pool_name].host_encryption_enabled
+    node_public_ip_enabled       = local.node_pools[var.default_node_pool_name].node_public_ip_enabled
     type                         = local.node_pools[var.default_node_pool_name].type
     only_critical_addons_enabled = local.node_pools[var.default_node_pool_name].only_critical_addons_enabled
     orchestrator_version         = local.node_pools[var.default_node_pool_name].orchestrator_version
