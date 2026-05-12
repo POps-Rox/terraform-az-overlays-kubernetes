@@ -7,7 +7,7 @@
 # This module will lookup the Azure Region and return the short name for the region
 # Az region lookup - pass the location - eus2 etc. 
 module "mod_azregions" {
-  source = "github.com/POps-Rox/terraform-az-overlays-azregionslookup"
+  source = "github.com/POps-Rox/terraform-az-overlays-azregionslookup?ref=v2.0.0"
 
   azure_region = var.location
 }
@@ -26,7 +26,7 @@ data "azurerm_resource_group" "rgrp" {
 }
 
 module "mod_scaffold_rg" {
-  source = "github.com/POps-Rox/terraform-az-overlays-resourcegroup"
+  source = "github.com/POps-Rox/terraform-az-overlays-resourcegroup?ref=v2.0.0"
 
   count = var.create_aks_resource_group ? 1 : 0
 
