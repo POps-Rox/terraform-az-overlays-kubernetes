@@ -36,12 +36,12 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
     vm_size                      = local.node_pools[var.default_node_pool_name].vm_size
     os_disk_size_gb              = local.node_pools[var.default_node_pool_name].os_disk_size_gb
     os_disk_type                 = local.node_pools[var.default_node_pool_name].os_disk_type
-    enable_auto_scaling          = local.node_pools[var.default_node_pool_name].enable_auto_scaling
-    node_count                   = (local.node_pools[var.default_node_pool_name].enable_auto_scaling ? null : local.node_pools[var.default_node_pool_name].node_count)
-    min_count                    = (local.node_pools[var.default_node_pool_name].enable_auto_scaling ? local.node_pools[var.default_node_pool_name].min_count : null)
-    max_count                    = (local.node_pools[var.default_node_pool_name].enable_auto_scaling ? local.node_pools[var.default_node_pool_name].max_count : null)
-    enable_host_encryption       = local.node_pools[var.default_node_pool_name].enable_host_encryption
-    enable_node_public_ip        = local.node_pools[var.default_node_pool_name].enable_node_public_ip
+    auto_scaling_enabled          = local.node_pools[var.default_node_pool_name].auto_scaling_enabled
+    node_count                   = (local.node_pools[var.default_node_pool_name].auto_scaling_enabled ? null : local.node_pools[var.default_node_pool_name].node_count)
+    min_count                    = (local.node_pools[var.default_node_pool_name].auto_scaling_enabled ? local.node_pools[var.default_node_pool_name].min_count : null)
+    max_count                    = (local.node_pools[var.default_node_pool_name].auto_scaling_enabled ? local.node_pools[var.default_node_pool_name].max_count : null)
+    host_encryption_enabled       = local.node_pools[var.default_node_pool_name].host_encryption_enabled
+    node_public_ip_enabled        = local.node_pools[var.default_node_pool_name].node_public_ip_enabled
     type                         = local.node_pools[var.default_node_pool_name].type
     only_critical_addons_enabled = local.node_pools[var.default_node_pool_name].only_critical_addons_enabled
     orchestrator_version         = local.node_pools[var.default_node_pool_name].orchestrator_version
@@ -95,9 +95,9 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
     ]
   }
 
-  # Enable AD & Azure RBAC 
+  # Enable AD & Azure RBAC
+  # azurerm 4.x: `managed` argument removed (AAD integration is always managed); `azure_rbac_enabled` is the entry point.
   azure_active_directory_role_based_access_control {
-    managed            = true
     tenant_id          = data.azurerm_subscription.current.tenant_id
     azure_rbac_enabled = true
   }

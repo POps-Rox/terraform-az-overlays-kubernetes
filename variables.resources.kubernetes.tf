@@ -318,22 +318,20 @@ variable "pod_cidr" {
 }
 
 variable "network_profile_options" {
-  description = "docker_bridge_cidr, dns_service_ip and service_cidr should all be empty or all should be set"
+  description = "dns_service_ip and service_cidr should all be empty or all should be set (docker_bridge_cidr removed in azurerm 4.x — Docker no longer used in AKS 1.24+)."
   type = object({
-    docker_bridge_cidr = string
-    dns_service_ip     = string
-    service_cidr       = string
+    dns_service_ip = string
+    service_cidr   = string
   })
   default = null
 
   validation {
     condition = (
       ((var.network_profile_options == null) ? true :
-        ((var.network_profile_options.docker_bridge_cidr != null) &&
-          (var.network_profile_options.dns_service_ip != null) &&
+        ((var.network_profile_options.dns_service_ip != null) &&
       (var.network_profile_options.service_cidr != null)))
     )
-    error_message = "Incorrect values set. docker_bridge_cidr, dns_service_ip and service_cidr should all be empty or all should be set."
+    error_message = "Incorrect values set. dns_service_ip and service_cidr should all be empty or all should be set."
 
   }
 }
@@ -364,11 +362,11 @@ variable "node_pool_defaults" {
   type = object({
     vm_size                      = string
     node_count                   = number
-    enable_auto_scaling          = bool
+    auto_scaling_enabled          = bool
     min_count                    = number
     max_count                    = number
-    enable_host_encryption       = bool
-    enable_node_public_ip        = bool
+    host_encryption_enabled       = bool
+    node_public_ip_enabled        = bool
     max_pods                     = number
     node_labels                  = map(string)
     only_critical_addons_enabled = bool
@@ -392,11 +390,11 @@ variable "node_pool_defaults" {
   default = { name = null
     vm_size                      = "Standard_DS2_v2" # "Standard_B2s"
     node_count                   = 1
-    enable_auto_scaling          = false
+    auto_scaling_enabled          = false
     min_count                    = null
     max_count                    = null
-    enable_host_encryption       = false
-    enable_node_public_ip        = false
+    host_encryption_enabled       = false
+    node_public_ip_enabled        = false
     max_pods                     = null
     node_labels                  = null
     only_critical_addons_enabled = false
