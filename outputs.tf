@@ -33,7 +33,7 @@ output "effective_outbound_ips_ids" {
 output "kube_config" {
   description = "kubernetes config to be used by kubectl and other compatible tools"
   value = (var.rbac.ad_integration ?
-  azurerm_kubernetes_cluster.aks_cluster.kube_admin_config.0 : azurerm_kubernetes_cluster.aks_cluster.kube_config.0)
+  azurerm_kubernetes_cluster.aks_cluster.kube_admin_config[0] : azurerm_kubernetes_cluster.aks_cluster.kube_config[0])
 }
 
 output "kube_config_raw" {
@@ -46,37 +46,37 @@ output "kube_config_raw" {
 output "host" {
   description = "kubernetes host"
   value = (var.rbac.ad_integration ?
-  azurerm_kubernetes_cluster.aks_cluster.kube_admin_config.0.host : azurerm_kubernetes_cluster.aks_cluster.kube_config.0.host)
+  azurerm_kubernetes_cluster.aks_cluster.kube_admin_config[0].host : azurerm_kubernetes_cluster.aks_cluster.kube_config[0].host)
 }
 
 output "username" {
   description = "kubernetes username"
   value = (var.rbac.ad_integration ?
-  azurerm_kubernetes_cluster.aks_cluster.kube_admin_config.0.username : azurerm_kubernetes_cluster.aks_cluster.kube_config.0.username)
+  azurerm_kubernetes_cluster.aks_cluster.kube_admin_config[0].username : azurerm_kubernetes_cluster.aks_cluster.kube_config[0].username)
 }
 
 output "password" {
   description = "kubernetes password"
   value = (var.rbac.ad_integration ?
-  azurerm_kubernetes_cluster.aks_cluster.kube_admin_config.0.password : azurerm_kubernetes_cluster.aks_cluster.kube_config.0.password)
+  azurerm_kubernetes_cluster.aks_cluster.kube_admin_config[0].password : azurerm_kubernetes_cluster.aks_cluster.kube_config[0].password)
 }
 
 output "client_certificate" {
   description = "kubernetes client certificate"
   value = (var.rbac.ad_integration ?
-  azurerm_kubernetes_cluster.aks_cluster.kube_admin_config.0.client_certificate : azurerm_kubernetes_cluster.aks_cluster.kube_config.0.client_certificate)
+  azurerm_kubernetes_cluster.aks_cluster.kube_admin_config[0].client_certificate : azurerm_kubernetes_cluster.aks_cluster.kube_config[0].client_certificate)
 }
 
 output "client_key" {
   description = "kubernetes client key"
   value = (var.rbac.ad_integration ?
-  azurerm_kubernetes_cluster.aks_cluster.kube_admin_config.0.client_key : azurerm_kubernetes_cluster.aks_cluster.kube_config.0.client_key)
+  azurerm_kubernetes_cluster.aks_cluster.kube_admin_config[0].client_key : azurerm_kubernetes_cluster.aks_cluster.kube_config[0].client_key)
 }
 
 output "cluster_ca_certificate" {
   description = "kubernetes cluster ca certificate"
   value = (var.rbac.ad_integration ?
-  azurerm_kubernetes_cluster.aks_cluster.kube_admin_config.0.cluster_ca_certificate : azurerm_kubernetes_cluster.aks_cluster.kube_config.0.cluster_ca_certificate)
+  azurerm_kubernetes_cluster.aks_cluster.kube_admin_config[0].cluster_ca_certificate : azurerm_kubernetes_cluster.aks_cluster.kube_config[0].cluster_ca_certificate)
 }
 
 output "principal_id" {
@@ -86,7 +86,7 @@ output "principal_id" {
 
 output "kubelet_identity" {
   description = "kubelet identity information"
-  value       = azurerm_kubernetes_cluster.aks_cluster.kubelet_identity.0
+  value       = azurerm_kubernetes_cluster.aks_cluster.kubelet_identity[0]
 }
 
 

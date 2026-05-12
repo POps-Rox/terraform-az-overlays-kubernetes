@@ -5,8 +5,8 @@ locals {
 
   user_assigned_identity_name = (var.user_assigned_identity_name == null ? "aks-${local.cluster_name}-control-plane" : var.user_assigned_identity_name)
 
-  aks_identity_id = (var.identity_type == "SystemAssigned" ? azurerm_kubernetes_cluster.aks_cluster.identity.0.principal_id :
-  (var.user_assigned_identity == null ? azurerm_user_assigned_identity.aks.0.principal_id : var.user_assigned_identity.principal_id))
+  aks_identity_id = (var.identity_type == "SystemAssigned" ? azurerm_kubernetes_cluster.aks_cluster.identity[0].principal_id :
+  (var.user_assigned_identity == null ? azurerm_user_assigned_identity.aks[0].principal_id : var.user_assigned_identity.principal_id))
 
   node_resource_group = (var.node_resource_group != null ? var.node_resource_group : "MC-${local.cluster_name}")
 

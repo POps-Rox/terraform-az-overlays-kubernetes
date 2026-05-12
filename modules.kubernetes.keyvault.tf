@@ -5,7 +5,7 @@ module "mod_key_vault" {
   depends_on = [
     azurerm_user_assigned_identity.aks
   ]
-  source = "github.com/POps-Rox/terraform-az-overlays-keyvault"
+  source = "github.com/POps-Rox/terraform-az-overlays-keyvault?ref=v2.0.0"
   count  = var.create_aks_keyvault ? 1 : 0
   providers = {
     azurerm     = azurerm
@@ -46,9 +46,9 @@ resource "azurerm_key_vault_access_policy" "aks_access_policy" {
     azurerm_user_assigned_identity.aks
   ]
   count        = var.create_aks_keyvault && var.identity_type == "UserAssigned" ? 1 : 0
-  key_vault_id = module.mod_key_vault.0.key_vault_id
+  key_vault_id = module.mod_key_vault[0].key_vault_id
   tenant_id    = data.azurerm_subscription.current.tenant_id
-  object_id    = azurerm_kubernetes_cluster.aks_cluster.kubelet_identity.0.object_id
+  object_id    = azurerm_kubernetes_cluster.aks_cluster.kubelet_identity[0].object_id
 
 
   key_permissions = [
