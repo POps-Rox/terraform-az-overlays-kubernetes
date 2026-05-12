@@ -29,18 +29,6 @@ variable "environment" {
   default = "dev"
 }
 
-# Network policy AKS
-variable "network_plugin" {
-  type    = string
-  default = "azure"
-}
-
-
-variable "network_policy" {
-  type    = string
-  default = "calico"
-}
-
 #az fw private ip for the private cluster egress to internet
 variable "firewall_private_ip" {
   type    = string

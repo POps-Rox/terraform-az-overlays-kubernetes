@@ -2,7 +2,6 @@
 # Licensed under the MIT License.
 # remove file if not needed
 data "azurerm_subscription" "current" {}
-data "azurerm_client_config" "current" {}
 
 data "azurerm_subnet" "aks_subnet" {
   name                 = "snet-aks"

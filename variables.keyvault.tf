@@ -7,6 +7,7 @@ variable "create_aks_keyvault" {
   default     = false
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "key_vault_custom_name" {
   description = "Custom name for the keyvault. If not set, the name will be generated using the `org_name`, `workload_name`, `deploy_environment` and `environment` variables."
   type        = string
@@ -31,18 +32,21 @@ variable "key_vault_sku_name" {
   default     = "standard"
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "virtual_network_name" {
   description = "The name of the virtual network to create the Key Vault private endpoint in."
   type        = string
   default     = null
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "existing_keyvault_private_dns_zone" {
   description = "The name of the existing private DNS zone to use for the Key Vault private endpoint."
   type        = string
   default     = null
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "existing_keyvault_private_subnet_name" {
   description = "The name of the existing private subnet to use for the Key Vault private endpoint."
   type        = string

@@ -1,4 +1,5 @@
 
+# tflint-ignore: terraform_unused_declarations
 variable "create_resource_group" {
   description = "Create a new resource group for this example? Set to false to use an existing resource group."
   type        = bool
@@ -11,6 +12,7 @@ variable "custom_resource_group_name" {
   default     = null
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "tags" {
   description = "A map of tags to add to all resources in this example."
   type        = map(string)

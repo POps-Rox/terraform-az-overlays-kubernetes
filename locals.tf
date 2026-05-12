@@ -14,26 +14,9 @@ locals {
   private_dns_zone_id = var.private_dns_zone_id
 
 
-  node_pools            = zipmap(keys(var.node_pools), [for node_pool in values(var.node_pools) : merge(var.node_pool_defaults, node_pool)])
-  additional_node_pools = { for k, v in local.node_pools : k => v if k != var.default_node_pool_name }
+  node_pools = zipmap(keys(var.node_pools), [for node_pool in values(var.node_pools) : merge(var.node_pool_defaults, node_pool)])
 
   windows_nodes = (length([for v in local.node_pools : v if lower(v.os_type) == "windows"]) > 0 ? true : false)
-
-  api_server_authorized_ip_ranges = (var.api_server_authorized_ip_ranges == null ? null : values(var.api_server_authorized_ip_ranges))
-
-  # Defaults for Linux profile
-  # Generally smaller images so can run more pods and require smaller HD
-  default_linux_node_profile = {
-    max_pods        = 30
-    os_disk_size_gb = 128
-  }
-
-  # Defaults for Windows profile
-  # Do not want to run same number of pods and some images can be quite large
-  default_windows_node_profile = {
-    max_pods        = 20
-    os_disk_size_gb = 256
-  }
 
   /* invalid_node_pool_attributes = join(",", flatten([for np in values(var.node_pools) : [for k, v in np : k if !(contains(keys(var.node_pool_defaults), k))]]))
   validate_node_pool_attributes = (length(local.invalid_node_pool_attributes) > 0 ?

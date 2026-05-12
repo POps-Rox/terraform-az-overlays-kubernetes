@@ -22,6 +22,7 @@ variable "use_naming" {
   default     = true
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "aadpodidentity_custom_name" {
   description = "Custom name for aad pod identity MSI"
   type        = string
@@ -34,12 +35,14 @@ variable "custom_cluster_name" {
   default     = ""
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "aks_user_assigned_identity_custom_name" {
   description = "Custom name for the aks user assigned identity resource"
   type        = string
   default     = null
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "appgw_user_assigned_identity_custom_name" {
   description = "Custom name for the application gateway user assigned identity resource"
   type        = string
