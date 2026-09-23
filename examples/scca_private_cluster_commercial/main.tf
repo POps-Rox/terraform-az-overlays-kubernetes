@@ -21,7 +21,7 @@ provider "azuread" {
 }
 
 module "mod_azure_region_lookup" {
-  source = "github.com/POps-Rox/terraform-az-overlays-azregionslookup?ref=v2.0.0"
+  source = "github.com/POps-Rox/terraform-az-overlays-azregionslookup?ref=v3.0.0"
 
   azure_region = "eastus"
 }

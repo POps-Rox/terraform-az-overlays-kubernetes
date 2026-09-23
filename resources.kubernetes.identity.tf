@@ -37,8 +37,8 @@ resource "azurerm_role_assignment" "route_table_network_contributor" {
 
 #assign contributor permsission to the subnet for the private cluster
 resource "azurerm_role_assignment" "aks_identity_contributor" {
-  principal_id         = azurerm_user_assigned_identity.aks[0].principal_id #azurerm_user_assigned_identity.aks_identity.principal_id
-  role_definition_name = "Contributor"                                      # You can use a more specific role if needed
+  principal_id         = local.aks_identity_id
+  role_definition_name = "Contributor"
   scope                = data.azurerm_route_table.rt.id
 }
 
@@ -88,4 +88,3 @@ resource "azurerm_role_assignment" "writer_user" {
   role_definition_name = "Azure Kubernetes Service RBAC Writer"
   principal_id         = azuread_group.akswriter.id
 }
-

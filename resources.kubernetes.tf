@@ -13,14 +13,14 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
   kubernetes_version  = var.kubernetes_version
   node_resource_group = local.node_resource_group
 
-  key_vault_secrets_provider {
-    secret_rotation_enabled = true
-  }
-
   private_cluster_enabled = true // private cluster is always enabled based on the current implementation (SCCA)
-  sku_tier                = var.sku_tier
+  sku_tier                = local.sku_tier
   private_dns_zone_id     = local.private_dns_zone_id
   dns_prefix              = local.dns_prefix
+
+  node_provisioning_profile {
+    mode = "Manual"
+  }
 
   network_profile {
     network_plugin = var.network_plugin
@@ -79,9 +79,9 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
   }
 
   dynamic "key_vault_secrets_provider" {
-    for_each = var.key_vault_secrets_provider[*]
+    for_each = [local.key_vault_secrets_provider]
     content {
-      secret_rotation_enabled  = key_vault_secrets_provider.value.secret_rotation_enabled
+      secret_rotation_enabled  = tobool(key_vault_secrets_provider.value.secret_rotation_enabled)
       secret_rotation_interval = key_vault_secrets_provider.value.secret_rotation_interval
     }
   }
