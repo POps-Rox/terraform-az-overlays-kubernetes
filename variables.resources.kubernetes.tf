@@ -318,13 +318,13 @@ variable "user_assigned_identity_name" {
 }
 
 variable "sku_tier" {
-  description = "Sets the cluster's SKU tier. The paid tier has a financially-backed uptime SLA. Read doc [here](https://docs.microsoft.com/en-us/azure/aks/uptime-sla)."
+  description = "Sets the cluster's SKU tier. In azurerm 5.x, Standard replaces the legacy Paid value; Paid is still accepted and mapped to Standard."
   type        = string
   default     = "Free"
 
   validation {
-    condition     = contains(["free", "paid"], lower(var.sku_tier))
-    error_message = "Available SKU Tiers are \"Free\" and \"Paid\"."
+    condition     = contains(["free", "standard", "premium", "paid"], lower(var.sku_tier))
+    error_message = "Available SKU Tiers are \"Free\", \"Standard\", \"Premium\", and legacy \"Paid\"."
   }
 }
 
@@ -574,7 +574,6 @@ variable "key_vault_secrets_provider" {
     error_message = " key vault secrets provider requires both secret rotation enabled and secret rotation interval"
   }
 }
-
 
 
 

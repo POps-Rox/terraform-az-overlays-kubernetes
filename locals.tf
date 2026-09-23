@@ -4,6 +4,11 @@
 locals {
 
   user_assigned_identity_name = (var.user_assigned_identity_name == null ? "aks-${local.cluster_name}-control-plane" : var.user_assigned_identity_name)
+  sku_tier                    = lower(var.sku_tier) == "paid" ? "Standard" : var.sku_tier
+  key_vault_secrets_provider = var.key_vault_secrets_provider == null ? {
+    secret_rotation_enabled  = true
+    secret_rotation_interval = null
+  } : var.key_vault_secrets_provider
 
   aks_identity_id = (var.identity_type == "SystemAssigned" ? azurerm_kubernetes_cluster.aks_cluster.identity[0].principal_id :
   (var.user_assigned_identity == null ? azurerm_user_assigned_identity.aks[0].principal_id : var.user_assigned_identity.principal_id))
